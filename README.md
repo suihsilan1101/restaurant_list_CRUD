@@ -1,5 +1,6 @@
 # 餐廳清單
 利用Node.js + Express打造的美食餐廳網站
+<img width="1440" alt="food-hunter list" src="https://user-images.githubusercontent.com/82745759/116541768-3accf600-a92f-11eb-8e0c-f5011769d9bc.png">
 
 ## Features
 * 使用者可以總覽所有餐廳的名稱、分類、評分
