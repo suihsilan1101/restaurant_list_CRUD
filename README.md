@@ -17,16 +17,16 @@
 ## 安裝與執行步驟
 * 打開終端機，使用git clone將專案下載至本地資料夾
 ```
-git clone https://github.com/suihsilan1101/restaurant_list.git
+git clone https://github.com/suihsilan1101/restaurant_list_CRUD.git
 ```
-* 進入專案資料夾
+* 進入專案資料夾後，安裝 packages
 ```
 cd restaurant_list
+npm install
 ```
-* 安裝專案需求套件
+* 啟動專案
 ```
-npm install 
-npm i nodemon
+npm run start
 ```
 * 啟動伺服器
 ```
@@ -34,7 +34,7 @@ npm run dev
 ```
 * 終端機顯示 
 ```
-Express is listening on http://localhost:3001 
+App is running on http://localhost:3001
 ```
 代表伺服器成功啟動 
 瀏覽專案功能可至瀏覽器網址輸入 
