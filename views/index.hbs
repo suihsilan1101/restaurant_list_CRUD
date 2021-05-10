@@ -47,13 +47,16 @@
             </div>
           </div>
         </a>
-        <div class="card-footer d-flex justify-content-end">
-          <a href="./restaurants/{{this._id}}/edit">
-            <button class="btn-edit">
+        <span class="card-footer bg-transparent border-success d-flex justify-content-end">
+          <a href="./restaurants/{{this._id}}/edit" style="margin: 5px;">
+            <button class="btn btn-secondary">
               <i class="fas fa-edit"></i>
             </button>
           </a>
-        </div>
+          <form action="/restaurants/{{this._id}}/delete" method="POST" style="margin: 5px;">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </span>
         {{/each}}
       </div>
     </div>
