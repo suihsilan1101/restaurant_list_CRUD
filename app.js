@@ -46,6 +46,15 @@ app.get('/', (req, res) => {
   // res.render('index', { restaurants: restaurants })
 })
 
+//show頁面 設定動態路由
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show',{restaurant}))
+    .catch(error => console.log(error))
+})
+
 //new 頁面路由
 app.get('/restaurants/new', (req,res) =>{
   return res.render('new')
@@ -59,13 +68,6 @@ app.post('/restaurants', (req,res) =>{
     .catch(error => console.log(error))
 })
 
-//打造show頁面 設定動態路由
-app.get('/restaurants/:restaurant_id', (req, res) =>{
-
-  const restaurant = restList.results.find( item =>  item.id.toString() === req.params.restaurant_id )
-
-  res.render('show', { restaurant: restaurant })
-})
 
 //queryString
 app.get('/search', (req, res) => {
