@@ -3,15 +3,16 @@
 <img width="1440" alt="food-hunter list" src="https://user-images.githubusercontent.com/82745759/116541768-3accf600-a92f-11eb-8e0c-f5011769d9bc.png">
 
 ## Features
-* 使用者可以總覽所有餐廳的名稱、分類、評分
-* 使用者可以點擊任一餐廳查看該餐廳的詳細資訊，如地址、電話、簡介以及Google map連結
-* 使用者可以使用中英文關鍵字或類別對餐廳名稱進行搜尋
+* 使用者可以在主畫面瀏覽多家餐廳資訊
+* 使用者可以點擊卡片查看該餐廳的詳細資訊
+* 使用者可以新增、修改、刪除餐廳資訊
 
 ## 環境建置與需求
 * node.js - v15.14.0
 * express - v4.17.1
 * express-handlebars: v5.3.0
 * nodemon - v2.0.7
+* mongoose - v5.12.7
 
 ## 安裝與執行步驟
 * 打開終端機，使用git clone將專案下載至本地資料夾
