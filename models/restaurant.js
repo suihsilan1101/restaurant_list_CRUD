@@ -11,7 +11,15 @@ const restaurantSchema = new Schema({
   name: {
     type: String, // 資料型別是字串
     required: true // 這是個必填欄位
-  }
+  },
+  name_en: String,
+  category: String,
+  image: String,
+  location: String,
+  phone: String,
+  google_map: String,
+  rating: Number,
+  description: String
 })
 
 //透過 module.exports 把 Schema 輸出
