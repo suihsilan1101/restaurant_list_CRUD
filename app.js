@@ -53,6 +53,7 @@ app.get('/restaurants/new', (req, res) => {
 
 //create功能-接住表單資料，並且把資料送往資料庫。這個步驟就是 CRUD 裡的 Create 動作
 app.post('/restaurants', (req, res) => {
+  if (req.body.image.length === 0) { req.body.image = 'https://www.teknozeka.com/wp-content/uploads/2020/03/wp-header-logo-33.png' }
   const name = req.body.name // 從 req.body 拿出表單裡的 name 資料
   return Restaurant.create({ name })// 存入資料庫
     .then(() => res.redirect('/')) // 新增完成後導回首頁
