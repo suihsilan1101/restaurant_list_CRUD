@@ -36,7 +36,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // 路由設定
-//restaurant 首頁路由
+// index (瀏覽頁)
 app.get('/', (req, res) => {
   Restaurant.find()// 取出 Restaurant model 裡的所有資料
     .lean() //// 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
@@ -44,6 +44,19 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error)) // 錯誤處理
   // const restaurants = restList.results
   // res.render('index', { restaurants: restaurants })
+})
+
+//new create頁面路由
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+//create功能-接住表單資料，並且把資料送往資料庫。這個步驟就是 CRUD 裡的 Create 動作
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name // 從 req.body 拿出表單裡的 name 資料
+  return Restaurant.create({ name })// 存入資料庫
+    .then(() => res.redirect('/')) // 新增完成後導回首頁
+    .catch(error => console.log(error))
 })
 
 //show頁面 設定動態路由
@@ -55,19 +68,33 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//new 頁面路由
-app.get('/restaurants/new', (req,res) =>{
-  return res.render('new')
-})
-
-//create功能-接住表單資料，並且把資料送往資料庫。這個步驟就是 CRUD 裡的 Create 動作
-app.post('/restaurants', (req,res) =>{
-  const name = req.body.name // 從 req.body 拿出表單裡的 name 資料
-  return Restaurant.create({ name })// 存入資料庫
-    .then(() => res.redirect('/')) // 新增完成後導回首頁
+//修改餐廳頁面
+app.get('/restaurants/:id/edit', (req,res) =>{
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', {restaurant}))
     .catch(error => console.log(error))
 })
 
+//Update 功能：資料庫修改特定 restaurant 的資料
+app.post('/restaurants/:id/edit/update', (req,res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = req.body.name
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image
+      restaurant.location = req.body.location
+      restaurant.phone = req.body.phone
+      restaurant.rating = req.body.rating
+      restaurant.google_map = req.body.google_map
+      restaurant.description = req.body.description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 
 //queryString
 app.get('/search', (req, res) => {
