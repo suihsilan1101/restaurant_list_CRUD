@@ -1,10 +1,13 @@
 // require packages used in the project
 const express = require('express')
+const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+
 const app = express()
 const port = 3001
 
-// require express-handlebars here
-const exphbs = require('express-handlebars')
+mongoose.connect('mongodb://localhost/restaurant_list', { useNewUrlParser: true, useUnifiedTopology: true } )
+
 
 //載入restaurant list資料
 const restaurantList = require('./restaurant.json')
@@ -15,11 +18,25 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+
+
+
 // routes setting
 app.get('/', (req, res) => {
   const restaurants = restaurantList.results
   res.render('index', { restaurants: restaurants })
 })
+
+
 
 //打造show頁面 設定動態路由
 app.get('/restaurants/:restaurant_id', (req, res) =>{
@@ -47,5 +64,5 @@ app.get('/search', (req, res) => {
 
 // start and listen on the Express server
 app.listen(port, () => {
-  console.log(`Express is listening on localhost:${port}`)
+  console.log(`App is running on localhost:${port}`)
 })
