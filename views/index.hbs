@@ -12,12 +12,12 @@
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
-                {{!-- 使用unless => if的相反 => falsy的參數回傳為true --}}
-                {{#unless restaurants}}
-                <div class="invalid-feedback" style="display: block;">
-                  找不到含有 {{ keyword }} 關鍵字的餐廳,請重新輸入關鍵字
-                </div>
-                {{/unless}}
+          {{!-- 使用unless => if的相反 => falsy的參數回傳為true --}}
+        {{#unless restaurants}}
+          <div class="invalid-feedback" style="display: block;">
+            找不到含有 {{ keyword }} 關鍵字的餐廳,請重新輸入關鍵字
+          </div>
+        {{/unless}}
       </form>
     </div>
   </div>
@@ -41,10 +41,9 @@
               </div>
 
               <span class="badge badge-pill badge-danger font-weight-normal">
-                4.1
+              {{ this.rating }}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-
             </div>
           </div>
         </a>
